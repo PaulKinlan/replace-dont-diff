@@ -8,7 +8,7 @@ A live leaderboard reshuffles every second. Instead of diffing the previous list
 against the next one and patching the changes (what React / Vue / a virtual DOM
 do), the **server re-renders the whole list and streams it as a
 `<template for="board">`** that replaces the region in place. No virtual DOM, no
-diffing, no reconciliation, no client-side framework — and for the update itself,
+diffing, no reconciliation, no client-side framework, and for the update itself,
 no client JavaScript at all.
 
 The whole thing is one `server.ts`.
@@ -49,7 +49,7 @@ replaces everything between `<?start name="board">` and `<?end>`:
 
 The browser swaps the region in place. Each row carries a stable
 `view-transition-name`, so a browser that opts into view transitions animates the
-reshuffle for free — but that's a pure-CSS enhancement, not required for the
+reshuffle for free, but that's a pure-CSS enhancement, not required for the
 replacement to work.
 
 ## The point

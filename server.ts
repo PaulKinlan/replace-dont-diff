@@ -1,4 +1,4 @@
-// replace, don't diff — a Declarative Partial Updates demo.
+// replace, don't diff, a Declarative Partial Updates demo.
 //
 // A live leaderboard whose whole list is RE-RENDERED and REPLACED by the server
 // on every tick. No virtual DOM, no diffing, no reconciliation, no client-side
@@ -56,7 +56,7 @@ function streamingResponse(
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-// ── The "data" — a few teams whose scores random-walk each tick ──
+// -- the "data": a few teams whose scores random-walk each tick --
 type Row = { name: string; score: number };
 const teams: Row[] = [
   { name: "Astro Foxes", score: 42 },
@@ -75,7 +75,7 @@ function tick(): Row[] {
 }
 
 /** Render the ordered rows. Each row carries a stable view-transition-name so a
- *  browser that opts into transitions animates the reshuffle for free — but the
+ *  browser that opts into transitions animates the reshuffle for free, but the
  *  replacement itself needs none of that. */
 function rows(sorted: Row[]): string {
   const max = Math.max(...sorted.map((t) => t.score), 1);
@@ -97,7 +97,7 @@ const SHELL = (initial: string) =>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>replace, don't diff — declarative partial updates</title>
+<title>replace, don't diff, declarative partial updates</title>
 <style>
   :root { color-scheme: light dark; --bg:#0f1115; --card:#161a20; --line:#262b33; --fg:#e6e9ef; --muted:#9aa4b2; --accent:#6ea8fe; --fill:#3b82f6; }
   @media (prefers-color-scheme: light) { :root { --bg:#f7f8fa; --card:#fff; --line:#e5e7eb; --fg:#111827; --muted:#6b7280; --accent:#2563eb; --fill:#3b82f6; } }
@@ -120,8 +120,8 @@ const SHELL = (initial: string) =>
   .score { font-variant-numeric:tabular-nums; text-align:right; color:var(--accent); font-weight:600; }
   .note { color:var(--muted); font-size:.85rem; margin-top:1.25rem; }
   a { color:var(--accent); }
-  /* Opt every element into cross-fade view transitions so the reshuffle animates
-     — a pure-CSS enhancement, not required for the update to work. */
+  /* Opt every element into cross-fade view transitions so the reshuffle animates.
+     A pure-CSS enhancement, not required for the update to work. */
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration:.35s; }
 </style>
@@ -131,7 +131,7 @@ const SHELL = (initial: string) =>
   <h1>replace, don't diff</h1>
   <p class="lede">This leaderboard reshuffles every second. The server re-renders the
   <em>whole</em> list and streams it as a <code>&lt;template for="board"&gt;</code> that
-  replaces the region in place. No virtual DOM, no diffing, no framework — and no client
+  replaces the region in place. No virtual DOM, no diffing, no framework, and no client
   JavaScript.</p>
 
   <div class="board">
@@ -165,7 +165,7 @@ Deno.serve({ port: PORT }, (req) => {
     while (true) {
       await sleep(1000);
       // Re-emit the <?start>/<?end> marker inside each template so the region
-      // stays addressable for the next tick — the whole list is replaced in place.
+      // stays addressable for the next tick, the whole list is replaced in place.
       await write(
         `<template for="board"><?start name="board"><ol class="frame">\n${
           rows(tick())
