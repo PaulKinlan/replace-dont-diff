@@ -4,6 +4,9 @@ A tiny demo of Chrome's
 [Declarative Partial Updates](https://developer.chrome.com/blog/declarative-partial-updates)
 API making the case that you often don't need a virtual DOM.
 
+**Live:** <https://dpu-replace-dont-diff.paulkinlan-ea.deno.net>. Best viewed in Chrome
+148+ with `chrome://flags/#enable-experimental-web-platform-features`.
+
 A live leaderboard reshuffles every second. Instead of diffing the previous list
 against the next one and patching the changes (what React / Vue / a virtual DOM
 do), the **server re-renders the whole list and streams it as a
